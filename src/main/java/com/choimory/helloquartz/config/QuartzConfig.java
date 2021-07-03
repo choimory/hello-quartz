@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 
+import java.util.Date;
+
 @Configuration
 public class QuartzConfig {
     @Bean
@@ -24,20 +26,29 @@ public class QuartzConfig {
     public CronTriggerFactoryBean jobTrigger(){
         CronTriggerFactoryBean trigger = new CronTriggerFactoryBean();
         trigger.setJobDetail(quartzJob());
-        trigger.setCronExpression("*/10 * * * * ? *"); //10초 단위로
+        trigger.setCronExpression("*/10 * * * * ? *"); //10초마다
         return trigger;
     }
 
-    //TriggerBuilder, Simple Schedule Builder 사용
-    /*@Bean
-    public Trigger jobTrigger(){
-        return TriggerBuilder.newTrigger()
-                .forJob(quartzJob())
-                .withSchedule(SimpleScheduleBuilder
-                        .simpleSchedule()
-                        .withIntervalInSeconds(10) //실행시간으로부터 10초에 한번씩
-                        .repeatForever())
-                .build();
-    }*/
+    //SimpleTriggerFactoryBean
+    //@Bean
+    //public SimpleTriggerFactoryBean jobTrigger(){
+    //    SimpleTriggerFactoryBean simpleTriggerFactoryBean = new SimpleTriggerFactoryBean();
+    //    simpleTriggerFactoryBean.setJobDetail(quartzJob());
+    //    simpleTriggerFactoryBean.setStartTime(new Date()); // 시작일자
+    //    simpleTriggerFactoryBean.setRepeatInterval(10000L); // 10초마다 (milli sec)
+    //    return simpleTriggerFactoryBean;
+    //}
 
+    //TriggerBuilder, Simple Schedule Builder 사용
+    //@Bean
+    //public Trigger jobTrigger(){
+    //    return TriggerBuilder.newTrigger()
+    //            .forJob(quartzJob())
+    //            .withSchedule(SimpleScheduleBuilder
+    //                    .simpleSchedule()
+    //                    .withIntervalInSeconds(10) //실행시간으로부터 10초마다
+    //                    .repeatForever())
+    //            .build();
+    //}
 }

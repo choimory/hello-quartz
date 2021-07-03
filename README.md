@@ -8,6 +8,7 @@
 - Quartz JobDetail
 - Quartz JobTrigger
   - Quartz CronTriggerFactoryBean
+  - Quartz SimpleTriggerFactoryBean
   - Quartz TriggerBuilder, SimpleScheduleBuilder
 
 # 스택
