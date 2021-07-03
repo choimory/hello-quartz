@@ -17,6 +17,7 @@ public class QuartzConfig {
                 .withIdentity("logScheduler")
                 .withDescription("hello quartz")
                 .storeDurably()
+                //.requestRecovery(true)
                 .build();
     }
 
